@@ -1,0 +1,70 @@
+﻿  @model HomeViewModel
+
+<!-- Carousel Start -->
+    <div class="container-fluid p-0 mb-5">
+        <div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#header-carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#header-carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#header-carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                @for (int i = 0; i < Model.Sliders.Count; i++)
+            {
+                          <div class="carousel-item @(i==0?"active":"")">
+                            <img class="w-100" src="~/assets/img/@Model.Sliders[i].ImgUrl" alt="Image">
+                            <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                                <div class="p-3" style="max-width: 900px;">
+                                    <h5 class="text-white text-uppercase animated bounceInDown">@Model.Sliders[i].Title</h5>
+                                    <h1 class="display-1 text-white mb-md-4 animated zoomIn">@Model.Sliders[i].Discription</h1>
+                                    <a href="@Model.Sliders[i].RedirectUrl" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Get Quote</a>
+                                    <a href="@Model.Sliders[i].RedirectUrl2" class="btn btn-secondary py-md-3 px-md-5 animated slideInRight">Contact Us</a>
+                                </div>
+                            </div>
+                        </div>
+            }
+                    
+                
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#header-carousel"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+    <!-- Carousel End -->
+
+
+<!-- Services Start -->
+    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container">
+            <div class="text-center mx-auto mb-5" style="max-width: 600px;">
+                <h5 class="text-primary text-uppercase" style="letter-spacing: 5px;">Services</h5>
+                <h1 class="display-5 mb-0">Our Excellent CCTV Security Services</h1>
+            </div>
+            <div class="row g-5">
+                @foreach (SecurityService item in Model.SecurityServices)
+            {
+                    <div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.3s">
+                        <div class="service-item bg-light border-bottom border-5 border-primary rounded">
+                            <div class="position-relative p-5">
+                            @Html.Raw(item.Icon)
+                                <h5 class="text-primary mb-0">CCTV</h5>
+                                <h3 class="mb-3">@item.Title</h3>
+                                <p>@item.Description</p>
+                                <a href="@item.redirectUrl">Read More<i class="bi bi-arrow-right ms-2"></i></a>
+                            </div>
+                        </div>
+                    </div>
+            }
+                
+            </div>
+        </div>
+    </div>
+    <!-- Services End -->
